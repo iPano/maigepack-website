@@ -1,0 +1,10 @@
+{
+  "framework": "nuxtjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".output/public",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev -- --port $PORT",
+  "env": {
+    "NUXT_PUBLIC_API_BASE_URL": "@production-backend-url"
+  }
+}
