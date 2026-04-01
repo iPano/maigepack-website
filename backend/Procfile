@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=prod build/libs/*.jar
+web: cd backend && ./gradlew build -x test && java -jar -Dspring.profiles.active=prod build/libs/*.jar
