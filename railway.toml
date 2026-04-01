@@ -1,0 +1,15 @@
+# Railway Java Buildpack Configuration
+version: 1
+
+build:
+  commands:
+    - cd backend
+    - chmod +x gradlew
+    - ./gradlew build -x test
+
+run:
+  command: cd backend && java -jar -Dspring.profiles.active=prod build/libs/*.jar
+
+env:
+  JAVA_OPTS: "-Xmx512m"
+  SPRING_PROFILES_ACTIVE: "prod"
