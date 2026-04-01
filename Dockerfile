@@ -1,5 +1,5 @@
-# Use OpenJDK 18 as base image
-FROM openjdk:18-jdk-slim
+# Use Eclipse Temurin JDK 17 (LTS and widely supported)
+FROM eclipse-temurin:17-jdk-alpine
 
 # Set working directory
 WORKDIR /app
@@ -14,7 +14,7 @@ COPY start.sh ./
 RUN chmod +x start.sh
 RUN chmod +x backend/gradlew
 
-# Set Java home
+# Set Java home (Temurin sets this automatically)
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
