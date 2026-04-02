@@ -32,12 +32,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p JOIN p.targetIndustries i WHERE i = :industry AND p.active = true ORDER BY p.displayOrder")
     List<Product> findByTargetIndustry(@Param("industry") String industry);
 
-    // Paginated search with category filter
+    // Paginated search with category filter (simplified to avoid potential ElementCollection issues)
     @Query("SELECT p FROM Product p WHERE p.active = true AND " +
            "(:category IS NULL OR p.category = :category) AND " +
            "(:query IS NULL OR " +
            "LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')))")
+           "LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
+           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%')))")
     Page<Product> findProductsWithFilters(@Param("category") String category,
                                          @Param("query") String query,
                                          Pageable pageable);
