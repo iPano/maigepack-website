@@ -19,31 +19,36 @@ import java.net.URI;
 @Profile("prod")
 public class DataSourceConfig {
 
-    @Value("${DATABASE_URL:#{null}}")
-    private String databaseUrl;
+    @Value("${PGHOST:#{null}}")
+    private String pgHost;
+
+    @Value("${PGPORT:5432}")
+    private int pgPort;
+
+    @Value("${PGDATABASE:#{null}}")
+    private String pgDatabase;
+
+    @Value("${PGUSER:#{null}}")
+    private String pgUser;
+
+    @Value("${PGPASSWORD:#{null}}")
+    private String pgPassword;
 
     @Bean
     public DataSource dataSource() {
-        if (databaseUrl == null || databaseUrl.isEmpty()) {
+        if (pgHost == null || pgDatabase == null || pgUser == null) {
             throw new IllegalStateException(
-                "DATABASE_URL environment variable is not set. " +
-                "Make sure to add DATABASE_URL=${{Postgres.DATABASE_URL}} " +
-                "in your Railway backend service variables."
+                "PostgreSQL connection variables are not set. " +
+                "Make sure to add PGHOST, PGDATABASE, PGUSER, PGPASSWORD variables " +
+                "as references to your Railway backend service: " +
+                "PGHOST=${{Postgres.PGHOST}}, etc."
             );
         }
 
-        URI uri = URI.create(databaseUrl.replace("postgresql://", "http://"));
-        String host = uri.getHost();
-        int port = uri.getPort() == -1 ? 5432 : uri.getPort();
-        String database = uri.getPath().replaceFirst("/", "");
-        String[] userInfo = uri.getUserInfo().split(":");
-        String username = userInfo[0];
-        String password = userInfo.length > 1 ? userInfo[1] : "";
-
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://" + host + ":" + port + "/" + database);
-        config.setUsername(username);
-        config.setPassword(password);
+        config.setJdbcUrl("jdbc:postgresql://" + pgHost + ":" + pgPort + "/" + pgDatabase);
+        config.setUsername(pgUser);
+        config.setPassword(pgPassword);
         config.setDriverClassName("org.postgresql.Driver");
 
         return new HikariDataSource(config);
