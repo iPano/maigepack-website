@@ -22,6 +22,18 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
+    @GetMapping("/simple")
+    public ResponseEntity<List<Product>> getSimpleProducts() {
+        try {
+            List<Product> products = productRepository.findByActiveOrderByDisplayOrder(true);
+            return ResponseEntity.ok(products);
+        } catch (Exception e) {
+            System.err.println("Error in simple products: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.ok(List.of());
+        }
+    }
+
     @GetMapping
     public ResponseEntity<Page<Product>> getAllProducts(
             @RequestParam(required = false) String category,
@@ -32,6 +44,13 @@ public class ProductController {
             @RequestParam(defaultValue = "asc") String sortDirection) {
 
         try {
+            // First try simple approach without custom query
+            if (category == null && search == null) {
+                Pageable pageable = PageRequest.of(page, size, Sort.by("displayOrder"));
+                Page<Product> products = productRepository.findAll(pageable);
+                return ResponseEntity.ok(products);
+            }
+
             Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ?
                 Sort.Direction.DESC : Sort.Direction.ASC;
 
