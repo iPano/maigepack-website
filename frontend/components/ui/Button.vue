@@ -1,9 +1,9 @@
 <template>
   <component
-    :is="tag"
-    :type="tag === 'button' ? type : undefined"
-    :href="tag === 'a' ? href : undefined"
-    :to="tag === 'NuxtLink' ? to : undefined"
+    :is="computedTag"
+    :type="computedTag === 'button' ? type : undefined"
+    :href="computedTag === 'a' ? href : undefined"
+    :to="computedTag === 'NuxtLink' ? to : undefined"
     :disabled="disabled"
     :class="buttonClasses"
     @click="$emit('click', $event)"
@@ -43,6 +43,18 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   loading: false,
   fullWidth: false
+})
+
+// Automatically pick the right element based on props:
+// - explicit `tag` override wins
+// - `to` prop → NuxtLink (internal routing)
+// - `href` prop → <a> (external link)
+// - fallback → <button>
+const computedTag = computed(() => {
+  if (props.tag !== 'button') return props.tag
+  if (props.to) return 'NuxtLink'
+  if (props.href) return 'a'
+  return 'button'
 })
 
 defineEmits<{
