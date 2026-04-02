@@ -19,11 +19,19 @@ import java.net.URI;
 @Profile("prod")
 public class DataSourceConfig {
 
-    @Value("${DATABASE_URL}")
+    @Value("${DATABASE_URL:#{null}}")
     private String databaseUrl;
 
     @Bean
     public DataSource dataSource() {
+        if (databaseUrl == null || databaseUrl.isEmpty()) {
+            throw new IllegalStateException(
+                "DATABASE_URL environment variable is not set. " +
+                "Make sure to add DATABASE_URL=${{Postgres.DATABASE_URL}} " +
+                "in your Railway backend service variables."
+            );
+        }
+
         URI uri = URI.create(databaseUrl.replace("postgresql://", "http://"));
         String host = uri.getHost();
         int port = uri.getPort() == -1 ? 5432 : uri.getPort();
