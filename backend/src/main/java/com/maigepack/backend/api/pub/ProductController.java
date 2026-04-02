@@ -31,14 +31,30 @@ public class ProductController {
             @RequestParam(defaultValue = "displayOrder") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDirection) {
 
-        Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ?
-            Sort.Direction.DESC : Sort.Direction.ASC;
+        try {
+            Sort.Direction direction = sortDirection.equalsIgnoreCase("desc") ?
+                Sort.Direction.DESC : Sort.Direction.ASC;
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
+            // Validate sortBy field to prevent issues
+            String safeSortBy = sortBy;
+            if (!List.of("displayOrder", "name", "createdAt", "id").contains(sortBy)) {
+                safeSortBy = "displayOrder";
+            }
 
-        Page<Product> products = productRepository.findProductsWithFilters(category, search, pageable);
+            Pageable pageable = PageRequest.of(page, size, Sort.by(direction, safeSortBy));
 
-        return ResponseEntity.ok(products);
+            Page<Product> products = productRepository.findProductsWithFilters(category, search, pageable);
+
+            return ResponseEntity.ok(products);
+        } catch (Exception e) {
+            // Log the error and return a fallback response
+            System.err.println("Error fetching products: " + e.getMessage());
+            e.printStackTrace();
+
+            // Return empty page as fallback
+            Page<Product> emptyPage = Page.empty(PageRequest.of(0, size));
+            return ResponseEntity.ok(emptyPage);
+        }
     }
 
     @GetMapping("/{slug}")
