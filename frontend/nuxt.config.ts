@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false, // Temporarily disable SSR to avoid Nitro build issues on Vercel
   app: {
     head: {
       title: 'Custom Packaging Solutions | MaigePack Manufacturing',
