@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cmd=\"$1\"; if echo \"$cmd\" | grep -qE \"git push.*(origin )?main\"; then echo \"⚠️  WARNING: Pushing directly to main. Please push to develop first, then open a PR to main.\"; exit 2; fi' -- \"$CLAUDE_TOOL_INPUT_COMMAND\""
+          }
+        ]
+      }
+    ]
+  }
+}

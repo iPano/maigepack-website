@@ -1,22 +1,24 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: (new) → 1.0.0
+Version change: 1.0.0 → 1.1.0
 Added sections:
   - Core Principles (I–VI)
   - Technology Stack
   - Development Workflow
   - Governance
-Modified principles: n/a (initial adoption)
-Removed sections: n/a (initial adoption)
+Modified principles:
+  - Development Workflow section expanded with branch strategy (develop-first)
+Added sections: n/a
+Removed sections: n/a
 Templates reviewed:
-  - .specify/templates/plan-template.md  ✅ compatible — Constitution Check section present
-  - .specify/templates/spec-template.md  ✅ compatible — functional requirements and success criteria align
-  - .specify/templates/tasks-template.md ✅ compatible — phase structure aligns with workflow gates
+  - .specify/templates/plan-template.md  ✅ compatible
+  - .specify/templates/spec-template.md  ✅ compatible
+  - .specify/templates/tasks-template.md ✅ compatible
 Follow-up TODOs:
-  - TODO(RATIFICATION_DATE): Confirm exact adoption date; currently set to first commit date 2026-04-03.
-  - TODO(UPLOAD_PROVIDER): Decide production upload provider (local vs Alibaba OSS) and document secret rotation policy.
-  - TODO(EMAIL_POLICY): Confirm app.notification.toEmail target and graceful no-op behavior in staging.
+  - TODO(RATIFICATION_DATE): Still set to first commit date 2026-04-03; update if needed.
+  - TODO(UPLOAD_PROVIDER): Decide production upload provider (local vs Alibaba OSS).
+  - TODO(EMAIL_POLICY): Confirm app.notification.toEmail target and staging behavior.
 -->
 
 # MaigePack Constitution
@@ -147,9 +149,12 @@ burden and onboarding cost without proportional benefit.
 
 ### Branch Strategy
 
-- Feature branches follow spec-kit naming: `###-feature-name` (e.g., `001-product-filters`).
-- `main` is the deployable branch; direct commits to `main` are not permitted for features.
-- Hotfixes MAY be committed directly to `main` with a co-author note and immediate PR retrospective.
+- `main` is the production-ready branch. Direct commits to `main` are **not permitted** for features or fixes.
+- `develop` is the integration branch. **All work MUST be pushed to `develop` first.**
+- Feature branches follow spec-kit naming: `###-feature-name` (e.g., `001-product-detail-page`).
+- Feature branches are merged into `develop` via pull request; `develop` → `main` when ready to release.
+- Hotfixes MAY be committed directly to `develop` with a co-author note; they reach `main` via the normal PR flow unless a production incident demands an emergency `main` fix.
+- A push guard hook (`.claude/settings.json`) blocks accidental direct pushes to `main` from Claude Code.
 
 ### Environment Variables (required, never committed)
 
@@ -187,4 +192,4 @@ this document and a PR, ticket, or verbal agreement, this document wins.
 - Violations must be documented in the PR description with justification or resolved before merge.
 - The `Complexity Tracking` table in `plan.md` is the mechanism for justified exceptions.
 
-**Version**: 1.0.0 | **Ratified**: 2026-04-03 | **Last Amended**: 2026-04-03
+**Version**: 1.1.0 | **Ratified**: 2026-04-03 | **Last Amended**: 2026-04-03
