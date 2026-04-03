@@ -149,12 +149,17 @@ burden and onboarding cost without proportional benefit.
 
 ### Branch Strategy
 
-- `main` is the production-ready branch. Direct commits to `main` are **not permitted** for features or fixes.
-- `develop` is the integration branch. **All work MUST be pushed to `develop` first.**
+- `main` is the production-ready branch. No direct commits permitted — only merged from `develop` via PR.
+- `develop` is the integration branch. No direct commits permitted — all changes arrive via PR from a feature branch.
 - Feature branches follow spec-kit naming: `###-feature-name` (e.g., `001-product-detail-page`).
-- Feature branches are merged into `develop` via pull request; `develop` → `main` when ready to release.
-- Hotfixes MAY be committed directly to `develop` with a co-author note; they reach `main` via the normal PR flow unless a production incident demands an emergency `main` fix.
-- A push guard hook (`.claude/settings.json`) blocks accidental direct pushes to `main` from Claude Code.
+- **Every change, no matter how small, MUST follow this flow:**
+  1. Create a feature branch from `develop`
+  2. Commit the change to the feature branch
+  3. Push the feature branch and **open a PR to `develop`** for review
+  4. After PR approval, merge into `develop`
+  5. `develop` → `main` via PR when ready to release
+- Hotfixes follow the same flow (feature branch → `develop` PR), unless a live production incident requires an emergency `main` patch — which MUST be immediately back-merged to `develop`.
+- A push guard hook (`.claude/settings.json`) blocks accidental direct pushes to `main` or `develop`.
 
 ### Environment Variables (required, never committed)
 
@@ -192,4 +197,4 @@ this document and a PR, ticket, or verbal agreement, this document wins.
 - Violations must be documented in the PR description with justification or resolved before merge.
 - The `Complexity Tracking` table in `plan.md` is the mechanism for justified exceptions.
 
-**Version**: 1.1.0 | **Ratified**: 2026-04-03 | **Last Amended**: 2026-04-03
+**Version**: 1.2.0 | **Ratified**: 2026-04-03 | **Last Amended**: 2026-04-03
