@@ -1,9 +1,9 @@
 <template>
   <component
     :is="computedTag"
-    :type="computedTag === 'button' ? type : undefined"
-    :href="computedTag === 'a' ? href : undefined"
-    :to="computedTag === 'NuxtLink' ? to : undefined"
+    :type="isButton ? type : undefined"
+    :href="isAnchor ? href : undefined"
+    :to="isLink ? to : undefined"
     :disabled="disabled"
     :class="buttonClasses"
     @click="$emit('click', $event)"
@@ -21,6 +21,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { resolveComponent } from 'vue'
+
 interface Props {
   variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'danger'
   size?: 'sm' | 'md' | 'lg' | 'xl'
@@ -45,17 +48,24 @@ const props = withDefaults(defineProps<Props>(), {
   fullWidth: false
 })
 
-// Automatically pick the right element based on props:
-// - explicit `tag` override wins
-// - `to` prop → NuxtLink (internal routing)
-// - `href` prop → <a> (external link)
-// - fallback → <button>
+// resolveComponent('NuxtLink') returns the actual component object.
+// Passing the string 'NuxtLink' to <component :is> does NOT work in
+// Nuxt 3 — Vue cannot resolve global components by string at runtime
+// inside <component :is>; you must pass the component definition itself.
+const NuxtLinkComponent = resolveComponent('NuxtLink')
+
 const computedTag = computed(() => {
+  if (props.tag === 'NuxtLink') return NuxtLinkComponent
   if (props.tag !== 'button') return props.tag
-  if (props.to) return 'NuxtLink'
+  if (props.to) return NuxtLinkComponent
   if (props.href) return 'a'
   return 'button'
 })
+
+// Helpers for the template so we don't compare against a component object
+const isButton = computed(() => computedTag.value === 'button')
+const isAnchor = computed(() => computedTag.value === 'a')
+const isLink = computed(() => !isButton.value && !isAnchor.value)
 
 defineEmits<{
   click: [event: MouseEvent]
