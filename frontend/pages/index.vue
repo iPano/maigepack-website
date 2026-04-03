@@ -89,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 // SEO Meta Tags
 useSeoMeta({
@@ -104,14 +104,14 @@ useSeoMeta({
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-const { data, pending, error } = await useFetch(`${apiBaseUrl}/api/public/site/nav`)
+const { data, pending, error } = useFetch(`${apiBaseUrl}/api/public/site/nav`)
 
 const categories = computed(() => {
   return (data.value as any)?.categories ?? []
 })
 
-if (error.value) {
-  console.error('Failed to load categories:', error.value)
-}
+watch(error, (err) => {
+  if (err) console.error('Failed to load categories:', err)
+})
 </script>
 
