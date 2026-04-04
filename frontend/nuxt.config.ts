@@ -1,5 +1,12 @@
 export default defineNuxtConfig({
   ssr: false, // Temporarily disable SSR to avoid Nitro build issues on Vercel
+  components: [
+    // ui/ components registered WITHOUT prefix: <Button>, <Card>, <Badge>, <Input>
+    { path: '~/components/ui', pathPrefix: false },
+    // All other components keep Nuxt's default prefix behaviour:
+    // layout/Header.vue → <LayoutHeader>, sections/Hero.vue → <SectionsHero>, etc.
+    { path: '~/components', pathPrefix: true }
+  ],
   app: {
     head: {
       title: 'Custom Packaging Solutions | MaigePack Manufacturing',
