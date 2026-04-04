@@ -83,15 +83,13 @@ const handleLogin = async () => {
     localStorage.setItem('adminToken', data.token)
     await navigateTo('/admin/products')
   } catch (error: unknown) {
-    if (
-      error &&
-      typeof error === 'object' &&
-      'status' in error &&
-      (error as { status: number }).status === 401
-    ) {
+    const status = (error as { statusCode?: number; status?: number })?.statusCode
+      ?? (error as { statusCode?: number; status?: number })?.status
+    if (status === 401) {
       errorMessage.value = 'Invalid credentials. Please try again.'
     } else {
-      errorMessage.value = 'An error occurred. Please try again later.'
+      errorMessage.value = `Error ${status ?? 'unknown'}: could not reach the server. Check console for details.`
+      console.error('[login]', error)
     }
   } finally {
     loading.value = false
