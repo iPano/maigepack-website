@@ -80,6 +80,11 @@ const handleLogin = async () => {
       body: { username: form.username, password: form.password }
     })
 
+    if (!data?.token) {
+      errorMessage.value = 'Login failed: no token received. Check NUXT_PUBLIC_API_BASE_URL config.'
+      return
+    }
+
     localStorage.setItem('adminToken', data.token)
     await navigateTo('/admin/products')
   } catch (error: unknown) {
