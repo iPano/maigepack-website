@@ -89,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 // SEO Meta Tags
 useSeoMeta({
@@ -104,14 +104,22 @@ useSeoMeta({
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-const { data, pending, error } = useFetch(`${apiBaseUrl}/api/public/site/nav`)
+// Use plain ref + onMounted so the fetch runs AFTER the page mounts.
+// useFetch/useAsyncData always triggers Suspense in Nuxt 3 — if the backend
+// is unreachable the Suspense error boundary catches it and kills the entire
+// page mount, leaving Vue Router without event handlers (buttons unresponsive).
+const categories = ref<string[]>([])
+const pending = ref(true)
 
-const categories = computed(() => {
-  return (data.value as any)?.categories ?? []
-})
-
-watch(error, (err) => {
-  if (err) console.error('Failed to load categories:', err)
+onMounted(async () => {
+  try {
+    const data = await $fetch<{ categories: string[] }>(`${apiBaseUrl}/api/public/site/nav`)
+    categories.value = data?.categories ?? []
+  } catch {
+    // Backend unavailable — silently show empty categories, page still works
+    categories.value = []
+  } finally {
+    pending.value = false
+  }
 })
 </script>
-
