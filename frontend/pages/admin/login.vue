@@ -81,7 +81,7 @@ const handleLogin = async () => {
     })
 
     if (!data?.token) {
-      errorMessage.value = 'Login failed: no token received. Check NUXT_PUBLIC_API_BASE_URL config.'
+      errorMessage.value = `Login failed: response was ${JSON.stringify(data)}`
       return
     }
 
