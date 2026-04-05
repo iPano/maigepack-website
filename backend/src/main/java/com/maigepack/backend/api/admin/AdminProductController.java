@@ -43,8 +43,8 @@ public class AdminProductController {
                 : Sort.by(safeSortBy).ascending();
         Pageable pageable = PageRequest.of(page, Math.min(size, 100), sort);
 
-        String queryParam = (search != null && !search.isBlank()) ? search.trim() : null;
-        String categoryParam = (category != null && !category.isBlank()) ? category.trim() : null;
+        String queryParam = (search != null && !search.isBlank()) ? search.trim() : "";
+        String categoryParam = (category != null && !category.isBlank()) ? category.trim() : "";
 
         Page<Product> products = productRepository.findAllProductsWithFilters(categoryParam, queryParam, pageable);
         Page<ProductSummaryResponse> response = products.map(p ->
