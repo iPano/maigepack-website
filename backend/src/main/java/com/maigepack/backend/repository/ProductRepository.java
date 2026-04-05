@@ -36,9 +36,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.active = true AND " +
            "(:category IS NULL OR p.category = :category) AND " +
            "(:query IS NULL OR (" +
-           "LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%'))))")
+           "LOWER(p.name) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')) OR " +
+           "LOWER(p.description) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')) OR " +
+           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%'))))")
     Page<Product> findProductsWithFilters(@Param("category") String category,
                                          @Param("query") String query,
                                          Pageable pageable);
@@ -51,9 +51,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE " +
            "(:category IS NULL OR p.category = :category) AND " +
            "(:query IS NULL OR (" +
-           "LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%'))))")
+           "LOWER(p.name) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')) OR " +
+           "LOWER(p.description) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')) OR " +
+           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%'))))")
     Page<Product> findAllProductsWithFilters(@Param("category") String category,
                                              @Param("query") String query,
                                              Pageable pageable);
