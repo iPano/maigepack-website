@@ -80,6 +80,11 @@ const handleLogin = async () => {
       body: { username: form.username, password: form.password }
     })
 
+    if (!data?.token) {
+      errorMessage.value = `Login failed: response was ${JSON.stringify(data)}`
+      return
+    }
+
     localStorage.setItem('adminToken', data.token)
     await navigateTo('/admin/products')
   } catch (error: unknown) {
