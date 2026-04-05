@@ -35,10 +35,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Paginated search with category filter (simplified to avoid potential ElementCollection issues)
     @Query("SELECT p FROM Product p WHERE p.active = true AND " +
            "(:category IS NULL OR p.category = :category) AND " +
-           "(:query IS NULL OR " +
+           "(:query IS NULL OR (" +
            "LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
            "LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%')))")
+           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%'))))")
     Page<Product> findProductsWithFilters(@Param("category") String category,
                                          @Param("query") String query,
                                          Pageable pageable);
@@ -50,10 +50,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Admin: paginated search with category filter — shows ALL products (including inactive)
     @Query("SELECT p FROM Product p WHERE " +
            "(:category IS NULL OR p.category = :category) AND " +
-           "(:query IS NULL OR " +
+           "(:query IS NULL OR (" +
            "LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
            "LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%')))")
+           "LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :query, '%'))))")
     Page<Product> findAllProductsWithFilters(@Param("category") String category,
                                              @Param("query") String query,
                                              Pageable pageable);
