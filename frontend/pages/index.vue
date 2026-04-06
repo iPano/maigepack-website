@@ -40,7 +40,7 @@
             <p class="text-gray-600 mb-6">
               Professional packaging solutions tailored to your industry needs.
             </p>
-            <Button variant="secondary" size="sm" :to="`/products/${category.toLowerCase().replace(/\s+/g, '-')}`">
+            <Button variant="secondary" size="sm" :to="`/products?category=${encodeURIComponent(category)}`">
               Learn More
             </Button>
           </Card>
