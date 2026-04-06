@@ -61,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'admin' })
 useSeoMeta({ title: 'Admin Login | MaigePack' })
 
 const config = useRuntimeConfig()

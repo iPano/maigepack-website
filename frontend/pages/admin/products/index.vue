@@ -138,7 +138,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ middleware: 'admin-auth' })
+definePageMeta({ middleware: 'admin-auth', layout: 'admin' })
 useSeoMeta({ title: 'Products | Admin' })
 
 interface ProductSummary {

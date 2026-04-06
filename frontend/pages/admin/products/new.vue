@@ -202,7 +202,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ middleware: 'admin-auth' })
+definePageMeta({ middleware: 'admin-auth', layout: 'admin' })
 useSeoMeta({ title: 'Add Product | Admin' })
 
 const { apiFetch } = useAdminApi()
