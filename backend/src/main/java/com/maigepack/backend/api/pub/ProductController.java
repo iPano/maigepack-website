@@ -62,7 +62,10 @@ public class ProductController {
 
             Pageable pageable = PageRequest.of(page, size, Sort.by(direction, safeSortBy));
 
-            Page<Product> products = productRepository.findProductsWithFilters(category, search, pageable);
+            Page<Product> products = productRepository.findProductsWithFilters(
+                    category != null ? category : "",
+                    search != null ? search : "",
+                    pageable);
 
             return ResponseEntity.ok(products);
         } catch (Exception e) {
