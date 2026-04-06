@@ -29,23 +29,23 @@ public class Product {
     @Column(length = 512)
     private String imageUrl;
 
-    @ElementCollection
+    @ElementCollection(fetch = jakarta.persistence.FetchType.EAGER)
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "image_url")
     private List<String> additionalImages;
 
-    @ElementCollection
+    @ElementCollection(fetch = jakarta.persistence.FetchType.EAGER)
     @CollectionTable(name = "product_features", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "feature", length = 256)
     private List<String> features;
 
-    @ElementCollection
+    @ElementCollection(fetch = jakarta.persistence.FetchType.EAGER)
     @CollectionTable(name = "product_specifications", joinColumns = @JoinColumn(name = "product_id"))
     @MapKeyColumn(name = "spec_name", length = 64)
     @Column(name = "spec_value", length = 256)
     private java.util.Map<String, String> specifications;
 
-    @ElementCollection
+    @ElementCollection(fetch = jakarta.persistence.FetchType.EAGER)
     @CollectionTable(name = "product_industries", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "industry", length = 64)
     private List<String> targetIndustries;
