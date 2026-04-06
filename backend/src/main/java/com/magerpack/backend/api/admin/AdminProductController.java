@@ -1,7 +1,7 @@
-package com.maigepack.backend.api.admin;
+package com.magerpack.backend.api.admin;
 
-import com.maigepack.backend.model.Product;
-import com.maigepack.backend.repository.ProductRepository;
+import com.magerpack.backend.model.Product;
+import com.magerpack.backend.repository.ProductRepository;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

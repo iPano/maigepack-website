@@ -1,4 +1,4 @@
-package com.maigepack.backend.api.admin;
+package com.magerpack.backend.api.admin;
 
 import java.time.Instant;
 
