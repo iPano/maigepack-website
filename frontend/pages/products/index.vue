@@ -286,10 +286,11 @@ const router = useRouter()
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-// Reactive state
-const searchQuery = ref('')
-const selectedCategory = ref<string | null>(null)
-const currentPage = ref(0)
+// Reactive state — initialise from URL query params immediately so the
+// first useFetch call already has the correct category/search/page
+const searchQuery = ref((route.query.search as string) || '')
+const selectedCategory = ref<string | null>((route.query.category as string) || null)
+const currentPage = ref(route.query.page ? parseInt(route.query.page as string) : 0)
 const sortBy = ref('displayOrder')
 const sortDirection = ref('asc')
 
@@ -351,21 +352,6 @@ const goToPage = (page: number) => {
   // Scroll to top of products section
   document.querySelector('.section')?.scrollIntoView({ behavior: 'smooth' })
 }
-
-// Initialize from URL query params
-onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search)
-
-  if (urlParams.get('category')) {
-    selectedCategory.value = urlParams.get('category')
-  }
-  if (urlParams.get('search')) {
-    searchQuery.value = urlParams.get('search')!
-  }
-  if (urlParams.get('page')) {
-    currentPage.value = parseInt(urlParams.get('page')!)
-  }
-})
 
 // Update URL when filters change
 watch([selectedCategory, searchQuery, currentPage], () => {
