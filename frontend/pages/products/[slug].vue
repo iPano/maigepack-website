@@ -220,8 +220,8 @@
                     </svg>
                     <div>
                       <p class="text-sm font-medium text-gray-900">Email</p>
-                      <a href="mailto:sales@maigepack.com" class="text-sm text-primary-600 hover:underline">
-                        sales@maigepack.com
+                      <a href="mailto:sales@magerpack.com" class="text-sm text-primary-600 hover:underline">
+                        sales@magerpack.com
                       </a>
                     </div>
                   </div>
@@ -318,8 +318,8 @@ const relatedProducts = computed(() => {
 watch(product, (newProduct) => {
   if (newProduct) {
     useSeoMeta({
-      title: `${newProduct.name} | Custom Packaging | MaigePack`,
-      ogTitle: `${newProduct.name} | Custom Packaging | MaigePack`,
+      title: `${newProduct.name} | Custom Packaging | MagerPack`,
+      ogTitle: `${newProduct.name} | Custom Packaging | MagerPack`,
       description: newProduct.shortDescription || newProduct.description || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`,
       ogDescription: newProduct.shortDescription || newProduct.description || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`,
       ogImage: newProduct.imageUrl || '/images/default-product-og.jpg',

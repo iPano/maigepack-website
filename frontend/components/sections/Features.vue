@@ -3,7 +3,7 @@
     <div class="container-custom">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-6">
-          Why Choose MaigePack?
+          Why Choose MagerPack?
         </h2>
         <p class="text-lead max-w-3xl mx-auto">
           With over 20 years of experience in packaging manufacturing, we deliver quality solutions

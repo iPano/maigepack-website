@@ -266,8 +266,8 @@
 <script setup lang="ts">
 // SEO Meta Tags
 useSeoMeta({
-  title: 'Industries We Serve | MaigePack Custom Packaging',
-  ogTitle: 'Industries We Serve | MaigePack Custom Packaging',
+  title: 'Industries We Serve | MagerPack Custom Packaging',
+  ogTitle: 'Industries We Serve | MagerPack Custom Packaging',
   description: 'Specialized packaging solutions for electronics, cosmetics, jewelry, fragrance, toys, and more. Industry expertise with compliance standards and custom solutions.',
   ogDescription: 'Specialized packaging solutions for electronics, cosmetics, jewelry, fragrance, toys, and more. Industry expertise with compliance standards and custom solutions.',
   ogImage: '/images/industries-og.jpg',

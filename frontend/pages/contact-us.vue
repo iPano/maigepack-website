@@ -158,8 +158,8 @@
                   </div>
                   <div>
                     <h4 class="font-medium text-navy-800">Email</h4>
-                    <a href="mailto:sales@maigepack.com" class="text-gray-600 hover:text-primary-600">
-                      sales@maigepack.com
+                    <a href="mailto:sales@magerpack.com" class="text-gray-600 hover:text-primary-600">
+                      sales@magerpack.com
                     </a>
                     <p class="text-sm text-gray-500">Primary contact for quotes</p>
                   </div>
@@ -226,7 +226,7 @@
 
             <!-- Why Choose Us -->
             <Card padding="lg" class="bg-gray-50">
-              <h3 class="text-xl font-semibold text-navy-900 mb-4">Why Choose MaigePack?</h3>
+              <h3 class="text-xl font-semibold text-navy-900 mb-4">Why Choose MagerPack?</h3>
               <ul class="space-y-3">
                 <li class="flex items-center space-x-3">
                   <svg class="w-5 h-5 text-success-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -266,8 +266,8 @@ import { reactive, ref } from 'vue'
 
 // SEO Meta Tags
 useSeoMeta({
-  title: 'Get Free Quote - Custom Packaging | MaigePack',
-  ogTitle: 'Get Free Quote - Custom Packaging | MaigePack',
+  title: 'Get Free Quote - Custom Packaging | MagerPack',
+  ogTitle: 'Get Free Quote - Custom Packaging | MagerPack',
   description: 'Get a free quote for custom packaging solutions. Expert team responds within 24 hours with detailed pricing and recommendations.',
   ogDescription: 'Get a free quote for custom packaging solutions. Expert team responds within 24 hours with detailed pricing and recommendations.',
   ogImage: '/images/contact-og.jpg',
@@ -355,7 +355,7 @@ async function submit() {
     form.message = ''
   } catch (e: any) {
     console.error('Form submission error:', e)
-    errorMessage.value = 'Sorry, there was an error submitting your request. Please try again or contact us directly at sales@maigepack.com'
+    errorMessage.value = 'Sorry, there was an error submitting your request. Please try again or contact us directly at sales@magerpack.com'
   } finally {
     submitting.value = false
   }

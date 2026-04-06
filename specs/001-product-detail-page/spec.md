@@ -89,7 +89,7 @@ and are unique to that product (not generic site-wide values).
 
 **Acceptance Scenarios**:
 
-1. **Given** any product detail page is loaded, **When** the page head is inspected, **Then** `<title>` includes the product name and brand name (e.g., "Rigid Boxes | MaigePack") and `<meta name="description">` contains the product's short description.
+1. **Given** any product detail page is loaded, **When** the page head is inspected, **Then** `<title>` includes the product name and brand name (e.g., "Rigid Boxes | MagerPack") and `<meta name="description">` contains the product's short description.
 2. **Given** two different product pages are loaded, **When** their `<title>` and `<meta name="description">` are compared, **Then** both values differ between the two pages.
 
 ---

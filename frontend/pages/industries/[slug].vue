@@ -325,8 +325,8 @@ const { data: recommendedProducts, pending: productsLoading } = await useFetch((
 watch(industry, (newIndustry) => {
   if (newIndustry) {
     useSeoMeta({
-      title: `${newIndustry.metaTitle || `${newIndustry.name} Packaging Solutions`} | MaigePack`,
-      ogTitle: `${newIndustry.metaTitle || `${newIndustry.name} Packaging Solutions`} | MaigePack`,
+      title: `${newIndustry.metaTitle || `${newIndustry.name} Packaging Solutions`} | MagerPack`,
+      ogTitle: `${newIndustry.metaTitle || `${newIndustry.name} Packaging Solutions`} | MagerPack`,
       description: newIndustry.metaDescription || newIndustry.shortDescription || `Specialized packaging solutions for ${newIndustry.name.toLowerCase()}. Get expert guidance and custom solutions designed for your industry.`,
       ogDescription: newIndustry.metaDescription || newIndustry.shortDescription || `Specialized packaging solutions for ${newIndustry.name.toLowerCase()}. Get expert guidance and custom solutions designed for your industry.`,
       ogImage: newIndustry.heroImageUrl || '/images/industry-og.jpg',

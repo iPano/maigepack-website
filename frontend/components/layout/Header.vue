@@ -9,7 +9,7 @@
               <span class="text-white font-bold text-lg">M</span>
             </div>
             <div class="hidden md:block">
-              <h1 class="text-xl font-bold text-navy-900">MaigePack</h1>
+              <h1 class="text-xl font-bold text-navy-900">MagerPack</h1>
               <p class="text-xs text-gray-600">Custom Packaging Solutions</p>
             </div>
           </NuxtLink>

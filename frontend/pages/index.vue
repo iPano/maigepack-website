@@ -93,8 +93,8 @@ import { ref, computed, onMounted } from 'vue'
 
 // SEO Meta Tags
 useSeoMeta({
-  title: 'Custom Packaging Solutions | MaigePack Manufacturing',
-  ogTitle: 'Custom Packaging Solutions | MaigePack Manufacturing',
+  title: 'Custom Packaging Solutions | MagerPack Manufacturing',
+  ogTitle: 'Custom Packaging Solutions | MagerPack Manufacturing',
   description: 'Professional custom packaging manufacturer specializing in rigid boxes, folding cartons, and display solutions for electronics, cosmetics, and luxury products.',
   ogDescription: 'Professional custom packaging manufacturer specializing in rigid boxes, folding cartons, and display solutions for electronics, cosmetics, and luxury products.',
   ogImage: '/images/og-image.jpg',

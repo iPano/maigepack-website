@@ -21,7 +21,7 @@ Follow-up TODOs:
   - TODO(EMAIL_POLICY): Confirm app.notification.toEmail target and staging behavior.
 -->
 
-# MaigePack Constitution
+# MagerPack Constitution
 
 ## Core Principles
 

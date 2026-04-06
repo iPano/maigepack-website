@@ -10,7 +10,7 @@
               <span class="text-white font-bold text-lg">M</span>
             </div>
             <div>
-              <h3 class="text-xl font-bold">MaigePack</h3>
+              <h3 class="text-xl font-bold">MagerPack</h3>
               <p class="text-sm text-gray-300">Custom Packaging Solutions</p>
             </div>
           </div>
@@ -114,8 +114,8 @@
               <svg class="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-              <a href="mailto:sales@maigepack.com" class="text-gray-300 hover:text-white transition-colors">
-                sales@maigepack.com
+              <a href="mailto:sales@magerpack.com" class="text-gray-300 hover:text-white transition-colors">
+                sales@magerpack.com
               </a>
             </li>
             <li class="flex items-center space-x-3">
@@ -143,7 +143,7 @@
       <div class="container-custom py-6">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div class="text-gray-400 text-sm">
-            <p>&copy; 2024 MaigePack. All rights reserved. | Established in 2004</p>
+            <p>&copy; 2024 MagerPack. All rights reserved. | Established in 2004</p>
           </div>
           <div class="flex items-center space-x-6 text-sm">
             <NuxtLink to="/privacy-policy" class="text-gray-400 hover:text-white transition-colors">

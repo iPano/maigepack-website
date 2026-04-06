@@ -91,9 +91,9 @@ any two industry pages.
 
 **Acceptance Scenarios**:
 
-1. **Given** any active industry detail page is loaded, **When** the page `<head>` is inspected, **Then** `<title>` contains the industry name and brand (e.g., "Cosmetics Packaging Solutions | MaigePack") and `<meta name="description">` reflects the industry's specific value proposition.
+1. **Given** any active industry detail page is loaded, **When** the page `<head>` is inspected, **Then** `<title>` contains the industry name and brand (e.g., "Cosmetics Packaging Solutions | MagerPack") and `<meta name="description">` reflects the industry's specific value proposition.
 2. **Given** an industry has `metaTitle` and `metaDescription` values configured, **When** the page loads, **Then** those values are used verbatim for `<title>` and `<meta name="description">`.
-3. **Given** an industry does not have `metaTitle` configured, **When** the page loads, **Then** a sensible fallback title is generated from the industry name (e.g., "[Industry Name] Packaging Solutions | MaigePack").
+3. **Given** an industry does not have `metaTitle` configured, **When** the page loads, **Then** a sensible fallback title is generated from the industry name (e.g., "[Industry Name] Packaging Solutions | MagerPack").
 4. **Given** two different industry pages are loaded, **When** their `<title>` tags are compared, **Then** both values are unique and specific to their respective industry.
 
 ---

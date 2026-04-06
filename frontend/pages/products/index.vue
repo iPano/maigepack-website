@@ -272,8 +272,8 @@
 <script setup lang="ts">
 // SEO Meta Tags
 useSeoMeta({
-  title: 'Custom Packaging Products | MaigePack Manufacturing',
-  ogTitle: 'Custom Packaging Products | MaigePack Manufacturing',
+  title: 'Custom Packaging Products | MagerPack Manufacturing',
+  ogTitle: 'Custom Packaging Products | MagerPack Manufacturing',
   description: 'Browse our comprehensive range of custom packaging solutions including rigid boxes, folding boxes, display packaging, and more. Factory-direct pricing with rapid prototyping.',
   ogDescription: 'Browse our comprehensive range of custom packaging solutions including rigid boxes, folding boxes, display packaging, and more. Factory-direct pricing with rapid prototyping.',
   ogImage: '/images/products-og.jpg',

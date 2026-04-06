@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: 'Custom Packaging Solutions | MaigePack Manufacturing',
+      title: 'Custom Packaging Solutions | MagerPack Manufacturing',
       meta: [
         { name: 'description', content: 'Professional custom packaging manufacturer specializing in rigid boxes, folding cartons, and display solutions for electronics, cosmetics, and luxury products.' },
         { name: 'keywords', content: 'custom packaging, rigid boxes, folding boxes, display packaging, manufacturing, B2B' }
