@@ -5,9 +5,7 @@
     "dockerfilePath": "Dockerfile"
   },
   "deploy": {
-    "minReplicas": 0,
-    "maxReplicas": 1,
-    "sleepApplication": false,
+    "sleepApplication": true,
     "restartPolicyType": "ON_FAILURE"
   }
 }
