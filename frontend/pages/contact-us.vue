@@ -148,7 +148,8 @@
           <div class="space-y-8">
             <!-- Contact Details -->
             <Card padding="lg">
-              <h3 class="text-xl font-semibold text-navy-900 mb-6">Contact Information</h3>
+              <h3 class="text-xl font-semibold text-navy-900 mb-2">Contact Information</h3>
+              <p class="text-navy-700 font-medium mb-6">Wenzhou Mager Packaging Co., Ltd.</p>
               <div class="space-y-6">
                 <div class="flex items-start space-x-4">
                   <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -158,8 +159,8 @@
                   </div>
                   <div>
                     <h4 class="font-medium text-navy-800">Email</h4>
-                    <a href="mailto:sales@magerpack.com" class="text-gray-600 hover:text-primary-600">
-                      sales@magerpack.com
+                    <a href="mailto:eva@magerpack.com" class="text-gray-600 hover:text-primary-600">
+                      eva@magerpack.com
                     </a>
                     <p class="text-sm text-gray-500">Primary contact for quotes</p>
                   </div>
@@ -172,11 +173,23 @@
                     </svg>
                   </div>
                   <div>
-                    <h4 class="font-medium text-navy-800">Phone / WhatsApp</h4>
-                    <a href="tel:+8613728607297" class="text-gray-600 hover:text-primary-600">
-                      +86 137 2860 7297
+                    <h4 class="font-medium text-navy-800">Telephone</h4>
+                    <a href="tel:+865776812686" class="text-gray-600 hover:text-primary-600">
+                      86-577-68126868
                     </a>
                     <p class="text-sm text-gray-500">Available 9 AM - 6 PM CST</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                  <div class="w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-navy-800">Fax</h4>
+                    <p class="text-gray-600">86-577-68126868</p>
                   </div>
                 </div>
 
@@ -188,9 +201,10 @@
                     </svg>
                   </div>
                   <div>
-                    <h4 class="font-medium text-navy-800">Factory Location</h4>
-                    <p class="text-gray-600">Shenzhen, Guangdong Province</p>
-                    <p class="text-sm text-gray-500">Manufacturing facility</p>
+                    <h4 class="font-medium text-navy-800">Factory Address</h4>
+                    <p class="text-gray-600">Building 2, Shuguang Group,</p>
+                    <p class="text-gray-600">Longjin Avenue, Longgang City,</p>
+                    <p class="text-gray-600">Wenzhou, Zhejiang, China</p>
                   </div>
                 </div>
               </div>
@@ -355,7 +369,7 @@ async function submit() {
     form.message = ''
   } catch (e: any) {
     console.error('Form submission error:', e)
-    errorMessage.value = 'Sorry, there was an error submitting your request. Please try again or contact us directly at sales@magerpack.com'
+    errorMessage.value = 'Sorry, there was an error submitting your request. Please try again or contact us directly at eva@magerpack.com'
   } finally {
     submitting.value = false
   }
