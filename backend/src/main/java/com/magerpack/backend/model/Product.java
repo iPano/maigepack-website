@@ -65,16 +65,6 @@ public class Product {
     @Column(length = 64)
     private String leadTime;
 
-    // SEO fields — admin-controlled overrides
-    @Column(length = 128)
-    private String metaTitle;
-
-    @Column(length = 320)
-    private String metaDescription;
-
-    @Column(length = 256)
-    private String metaKeywords;
-
     @Column(nullable = false)
     private Boolean active = true;
 
@@ -224,30 +214,6 @@ public class Product {
 
     public void setLeadTime(String leadTime) {
         this.leadTime = leadTime;
-    }
-
-    public String getMetaTitle() {
-        return metaTitle;
-    }
-
-    public void setMetaTitle(String metaTitle) {
-        this.metaTitle = metaTitle;
-    }
-
-    public String getMetaDescription() {
-        return metaDescription;
-    }
-
-    public void setMetaDescription(String metaDescription) {
-        this.metaDescription = metaDescription;
-    }
-
-    public String getMetaKeywords() {
-        return metaKeywords;
-    }
-
-    public void setMetaKeywords(String metaKeywords) {
-        this.metaKeywords = metaKeywords;
     }
 
     public Boolean getActive() {

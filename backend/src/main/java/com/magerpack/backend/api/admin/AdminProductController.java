@@ -124,9 +124,6 @@ public class AdminProductController {
         product.setSizeRange(request.getSizeRange());
         product.setMinimumOrderQuantity(request.getMinimumOrderQuantity());
         product.setLeadTime(request.getLeadTime());
-        product.setMetaTitle(request.getMetaTitle());
-        product.setMetaDescription(request.getMetaDescription());
-        product.setMetaKeywords(request.getMetaKeywords());
         product.setActive(request.getActive() != null ? request.getActive() : true);
         product.setDisplayOrder(request.getDisplayOrder() != null ? request.getDisplayOrder() : 0);
     }
