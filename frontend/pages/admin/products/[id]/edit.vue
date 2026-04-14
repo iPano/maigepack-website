@@ -191,23 +191,6 @@
             <p v-if="form.targetIndustries.length === 0" class="text-sm text-gray-400">No industries added.</p>
           </div>
 
-          <!-- SEO Fields -->
-          <div class="space-y-4 border border-gray-200 rounded-xl p-5 bg-gray-50">
-            <h2 class="text-base font-semibold text-navy-900 border-b border-gray-100 pb-3">SEO Settings <span class="text-xs font-normal text-gray-400">(optional — overrides auto-generated values)</span></h2>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Meta Title <span class="text-xs text-gray-400">max 60 chars</span></label>
-              <input v-model="form.metaTitle" type="text" maxlength="128" class="input-field w-full" placeholder="Custom Rigid Boxes | MagerPack" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Meta Description <span class="text-xs text-gray-400">max 160 chars</span></label>
-              <textarea v-model="form.metaDescription" rows="2" maxlength="320" class="input-field w-full" placeholder="Factory-direct rigid boxes with full customisation. MOQ 500 pcs, 15-day lead time." />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Meta Keywords <span class="text-xs text-gray-400">comma-separated</span></label>
-              <input v-model="form.metaKeywords" type="text" maxlength="256" class="input-field w-full" placeholder="rigid boxes, custom packaging, luxury box manufacturer" />
-            </div>
-          </div>
-
           <!-- Submit -->
           <div class="flex items-center justify-end gap-4 pb-8">
             <NuxtLink to="/admin/products" class="px-6 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
@@ -261,10 +244,7 @@ const form = reactive({
   minimumOrderQuantity: null as number | null,
   leadTime: '',
   active: true,
-  displayOrder: 0,
-  metaTitle: '',
-  metaDescription: '',
-  metaKeywords: ''
+  displayOrder: 0
 })
 
 const specEntries = ref<{ key: string; value: string }[]>([])
@@ -369,9 +349,6 @@ onMounted(async () => {
       leadTime: string | null
       active: boolean
       displayOrder: number
-      metaTitle: string | null
-      metaDescription: string | null
-      metaKeywords: string | null
     }>(`/api/admin/products/${productId}`)
 
     form.name = product.name
@@ -390,9 +367,6 @@ onMounted(async () => {
     form.leadTime = product.leadTime ?? ''
     form.active = product.active
     form.displayOrder = product.displayOrder
-    form.metaTitle = product.metaTitle ?? ''
-    form.metaDescription = product.metaDescription ?? ''
-    form.metaKeywords = product.metaKeywords ?? ''
 
     if (product.specifications) {
       specEntries.value = Object.entries(product.specifications).map(([key, value]) => ({ key, value }))

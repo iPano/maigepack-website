@@ -29,9 +29,6 @@ public class ProductRequest {
     private String sizeRange;
     private Integer minimumOrderQuantity;
     private String leadTime;
-    private String metaTitle;
-    private String metaDescription;
-    private String metaKeywords;
     private Boolean active = true;
     private Integer displayOrder = 0;
 
@@ -79,15 +76,6 @@ public class ProductRequest {
 
     public String getLeadTime() { return leadTime; }
     public void setLeadTime(String leadTime) { this.leadTime = leadTime; }
-
-    public String getMetaTitle() { return metaTitle; }
-    public void setMetaTitle(String metaTitle) { this.metaTitle = metaTitle; }
-
-    public String getMetaDescription() { return metaDescription; }
-    public void setMetaDescription(String metaDescription) { this.metaDescription = metaDescription; }
-
-    public String getMetaKeywords() { return metaKeywords; }
-    public void setMetaKeywords(String metaKeywords) { this.metaKeywords = metaKeywords; }
 
     public Boolean getActive() { return active; }
     public void setActive(Boolean active) { this.active = active; }
