@@ -33,19 +33,19 @@
             </button>
             <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-large border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div class="p-2">
-                <NuxtLink to="/products/rigid-boxes" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
+                <NuxtLink to="/products/category/rigid-boxes" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
                   Rigid Boxes
                 </NuxtLink>
-                <NuxtLink to="/products/folding-boxes" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
+                <NuxtLink to="/products/category/folding-boxes" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
                   Folding Boxes
                 </NuxtLink>
-                <NuxtLink to="/products/display-boxes" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
+                <NuxtLink to="/products/category/display-boxes" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
                   Display Boxes
                 </NuxtLink>
-                <NuxtLink to="/products/packaging-sleeves" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
+                <NuxtLink to="/products/category/packaging-sleeves" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
                   Packaging Sleeves
                 </NuxtLink>
-                <NuxtLink to="/products/custom-inserts" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
+                <NuxtLink to="/products/category/custom-inserts" class="block px-4 py-3 text-sm text-navy-700 hover:bg-gray-50 rounded-md transition-colors">
                   Custom Inserts
                 </NuxtLink>
               </div>
@@ -136,35 +136,35 @@
             </button>
             <div v-show="productsMenuOpen" class="pl-4 space-y-1">
               <NuxtLink
-                to="/products/rigid-boxes"
+                to="/products/category/rigid-boxes"
                 class="block px-4 py-2 text-sm text-navy-600 hover:bg-gray-50 rounded-md transition-colors"
                 @click="closeMobileMenu"
               >
                 Rigid Boxes
               </NuxtLink>
               <NuxtLink
-                to="/products/folding-boxes"
+                to="/products/category/folding-boxes"
                 class="block px-4 py-2 text-sm text-navy-600 hover:bg-gray-50 rounded-md transition-colors"
                 @click="closeMobileMenu"
               >
                 Folding Boxes
               </NuxtLink>
               <NuxtLink
-                to="/products/display-boxes"
+                to="/products/category/display-boxes"
                 class="block px-4 py-2 text-sm text-navy-600 hover:bg-gray-50 rounded-md transition-colors"
                 @click="closeMobileMenu"
               >
                 Display Boxes
               </NuxtLink>
               <NuxtLink
-                to="/products/packaging-sleeves"
+                to="/products/category/packaging-sleeves"
                 class="block px-4 py-2 text-sm text-navy-600 hover:bg-gray-50 rounded-md transition-colors"
                 @click="closeMobileMenu"
               >
                 Packaging Sleeves
               </NuxtLink>
               <NuxtLink
-                to="/products/custom-inserts"
+                to="/products/category/custom-inserts"
                 class="block px-4 py-2 text-sm text-navy-600 hover:bg-gray-50 rounded-md transition-colors"
                 @click="closeMobileMenu"
               >

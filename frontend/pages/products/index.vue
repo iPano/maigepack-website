@@ -286,10 +286,11 @@ const router = useRouter()
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-// Reactive state
-const searchQuery = ref('')
-const selectedCategory = ref<string | null>(null)
-const currentPage = ref(0)
+// Reactive state — read from route.query at setup time so first useFetch
+// already has the correct values (SSR-safe: useRoute() works server-side)
+const searchQuery = ref((route.query.search as string) || '')
+const selectedCategory = ref<string | null>((route.query.category as string) || null)
+const currentPage = ref(route.query.page ? parseInt(route.query.page as string) : 0)
 const sortBy = ref('displayOrder')
 const sortDirection = ref('asc')
 
@@ -348,27 +349,15 @@ const clearFilters = () => {
 const goToPage = (page: number) => {
   currentPage.value = page
   updateProducts()
-  // Scroll to top of products section
-  document.querySelector('.section')?.scrollIntoView({ behavior: 'smooth' })
+  // Scroll to top — client-only (document not available on server)
+  if (import.meta.client) {
+    document.querySelector('.section')?.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 
-// Initialize from URL query params
-onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search)
-
-  if (urlParams.get('category')) {
-    selectedCategory.value = urlParams.get('category')
-  }
-  if (urlParams.get('search')) {
-    searchQuery.value = urlParams.get('search')!
-  }
-  if (urlParams.get('page')) {
-    currentPage.value = parseInt(urlParams.get('page')!)
-  }
-})
-
-// Update URL when filters change
+// Update URL when filters change — client-only (window not available on server)
 watch([selectedCategory, searchQuery, currentPage], () => {
+  if (!import.meta.client) return
   const params = new URLSearchParams()
 
   if (selectedCategory.value) params.append('category', selectedCategory.value)

@@ -314,16 +314,59 @@ const relatedProducts = computed(() => {
     .slice(0, 3)
 })
 
-// Update SEO when product loads
+// Update SEO + inject JSON-LD when product loads
 watch(product, (newProduct) => {
   if (newProduct) {
+    // Prefer admin-set meta fields, fall back to product content
+    const title = (newProduct as any).metaTitle || `${newProduct.name} | Custom Packaging | MagerPack`
+    const description = (newProduct as any).metaDescription
+      || newProduct.shortDescription
+      || newProduct.description
+      || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`
+
     useSeoMeta({
-      title: `${newProduct.name} | Custom Packaging | MagerPack`,
-      ogTitle: `${newProduct.name} | Custom Packaging | MagerPack`,
-      description: newProduct.shortDescription || newProduct.description || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`,
-      ogDescription: newProduct.shortDescription || newProduct.description || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`,
+      title,
+      ogTitle: title,
+      description,
+      ogDescription: description,
+      keywords: (newProduct as any).metaKeywords || undefined,
       ogImage: newProduct.imageUrl || '/images/default-product-og.jpg',
       twitterCard: 'summary_large_image'
+    })
+
+    // JSON-LD Product structured data for Google rich results
+    const images = [newProduct.imageUrl, ...((newProduct.additionalImages as string[]) || [])].filter(Boolean)
+    const additionalProperty = Object.entries((newProduct.specifications as Record<string, string>) || {}).map(([k, v]) => ({
+      '@type': 'PropertyValue', name: k, value: v
+    }))
+    if (newProduct.sizeRange) additionalProperty.push({ '@type': 'PropertyValue', name: 'Size Range', value: newProduct.sizeRange })
+    if (newProduct.minimumOrderQuantity) additionalProperty.push({ '@type': 'PropertyValue', name: 'Minimum Order Quantity', value: String(newProduct.minimumOrderQuantity) })
+    if (newProduct.leadTime) additionalProperty.push({ '@type': 'PropertyValue', name: 'Lead Time', value: newProduct.leadTime })
+
+    useHead({
+      script: [{
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: newProduct.name,
+          description,
+          image: images.length ? images : undefined,
+          sku: newProduct.slug,
+          category: newProduct.category,
+          brand: {
+            '@type': 'Organization',
+            name: 'MagerPack',
+            url: 'https://magerpack-website.vercel.app'
+          },
+          material: newProduct.materialOptions || undefined,
+          additionalProperty: additionalProperty.length ? additionalProperty : undefined,
+          audience: ((newProduct.targetIndustries as string[]) || []).map((i: string) => ({
+            '@type': 'Audience',
+            audienceType: i
+          }))
+        })
+      }]
     })
   }
 }, { immediate: true })

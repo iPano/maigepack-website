@@ -42,27 +42,27 @@
           <h4 class="text-lg font-semibold mb-6">Products</h4>
           <ul class="space-y-3">
             <li>
-              <NuxtLink to="/products/rigid-boxes" class="text-gray-300 hover:text-white transition-colors">
+              <NuxtLink to="/products/category/rigid-boxes" class="text-gray-300 hover:text-white transition-colors">
                 Rigid Boxes
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/products/folding-boxes" class="text-gray-300 hover:text-white transition-colors">
+              <NuxtLink to="/products/category/folding-boxes" class="text-gray-300 hover:text-white transition-colors">
                 Folding Boxes
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/products/display-boxes" class="text-gray-300 hover:text-white transition-colors">
+              <NuxtLink to="/products/category/display-boxes" class="text-gray-300 hover:text-white transition-colors">
                 Display Boxes
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/products/packaging-sleeves" class="text-gray-300 hover:text-white transition-colors">
+              <NuxtLink to="/products/category/packaging-sleeves" class="text-gray-300 hover:text-white transition-colors">
                 Packaging Sleeves
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/products/custom-inserts" class="text-gray-300 hover:text-white transition-colors">
+              <NuxtLink to="/products/category/custom-inserts" class="text-gray-300 hover:text-white transition-colors">
                 Custom Inserts
               </NuxtLink>
             </li>
