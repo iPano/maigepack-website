@@ -311,15 +311,22 @@ useSeoMeta({
   description: 'Loading industry information...'
 })
 
-// Fetch industry data
-const { data: industry, pending, error } = await useFetch(`${apiBaseUrl}/api/public/industries/${slug}`)
+// Fetch industry data — graceful null on backend failure
+const { data: industry, pending, error } = await useAsyncData(
+  `industry-${slug}`,
+  () => $fetch<any>(`${apiBaseUrl}/api/public/industries/${slug}`).catch(() => null),
+  { default: () => null }
+)
 
-// Fetch recommended products for this industry
-const { data: recommendedProducts, pending: productsLoading } = await useFetch(() => {
-  if (!industry.value?.name) return null
-  // Use industry name to find products (you could also use industry slug)
-  return `${apiBaseUrl}/api/public/products/industry/${industry.value.name}`
-})
+// Fetch recommended products for this industry — graceful empty on failure
+const { data: recommendedProducts, pending: productsLoading } = await useAsyncData(
+  `industry-products-${slug}`,
+  () => {
+    if (!industry.value?.name) return Promise.resolve([])
+    return $fetch<any[]>(`${apiBaseUrl}/api/public/products/industry/${industry.value.name}`).catch(() => [])
+  },
+  { default: () => [] as any[] }
+)
 
 // Update SEO when industry loads
 watch(industry, (newIndustry) => {

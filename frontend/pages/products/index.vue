@@ -304,8 +304,12 @@ const debouncedSearch = () => {
   }, 300)
 }
 
-// Fetch categories
-const { data: categories } = await useFetch(`${apiBaseUrl}/api/public/products/categories`)
+// Fetch categories — graceful empty on backend failure
+const { data: categories } = await useAsyncData(
+  'product-categories',
+  () => $fetch<string[]>(`${apiBaseUrl}/api/public/products/categories`).catch(() => []),
+  { default: () => [] as string[] }
+)
 
 // Build query parameters
 const buildQuery = () => {
@@ -321,11 +325,12 @@ const buildQuery = () => {
   return params.toString()
 }
 
-// Fetch products with reactive parameters
-const { data: products, pending, refresh } = await useFetch(() => {
-  const query = buildQuery()
-  return `${apiBaseUrl}/api/public/products?${query}`
-})
+// Fetch products — graceful null on backend failure
+const { data: products, pending, refresh } = await useAsyncData(
+  'products-list',
+  () => $fetch<any>(`${apiBaseUrl}/api/public/products?${buildQuery()}`).catch(() => null),
+  { default: () => null }
+)
 
 // Update products when filters change
 const updateProducts = async () => {

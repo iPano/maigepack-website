@@ -297,14 +297,22 @@ useSeoMeta({
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-// Fetch product data
-const { data: product, pending, error } = await useFetch(`${apiBaseUrl}/api/public/products/${slug}`)
+// Fetch product data — graceful null on backend failure
+const { data: product, pending, error } = await useAsyncData(
+  `product-${slug}`,
+  () => $fetch<any>(`${apiBaseUrl}/api/public/products/${slug}`).catch(() => null),
+  { default: () => null }
+)
 
-// Fetch related products (same category)
-const { data: relatedProductsData } = await useFetch(() => {
-  if (!product.value?.category) return null
-  return `${apiBaseUrl}/api/public/products/category/${product.value.category}`
-})
+// Fetch related products (same category) — graceful empty on failure
+const { data: relatedProductsData } = await useAsyncData(
+  `related-${slug}`,
+  () => {
+    if (!product.value?.category) return Promise.resolve([])
+    return $fetch<any[]>(`${apiBaseUrl}/api/public/products/category/${product.value.category}`).catch(() => [])
+  },
+  { default: () => [] as any[] }
+)
 
 const relatedProducts = computed(() => {
   if (!relatedProductsData.value) return []

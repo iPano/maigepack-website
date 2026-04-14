@@ -278,11 +278,10 @@ useSeoMeta({
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-// Fetch all active industries
-const { data: industries, pending, error } = await useFetch(`${apiBaseUrl}/api/public/industries`)
-
-// Error handling
-if (error.value) {
-  console.error('Failed to load industries:', error.value)
-}
+// Fetch all active industries — graceful empty on backend failure
+const { data: industries, pending, error } = await useAsyncData(
+  'industries-list',
+  () => $fetch<any[]>(`${apiBaseUrl}/api/public/industries`).catch(() => []),
+  { default: () => [] as any[] }
+)
 </script>
