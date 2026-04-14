@@ -40,7 +40,7 @@
             <p class="text-gray-600 mb-6">
               Professional packaging solutions tailored to your industry needs.
             </p>
-            <Button variant="secondary" size="sm" :to="`/products/${category.toLowerCase().replace(/\s+/g, '-')}`">
+            <Button variant="secondary" size="sm" :to="`/products/category/${category.toLowerCase().replace(/\s+/g, '-')}`">
               Learn More
             </Button>
           </Card>
@@ -89,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 
 // SEO Meta Tags
 useSeoMeta({
@@ -104,22 +104,14 @@ useSeoMeta({
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
-// Use plain ref + onMounted so the fetch runs AFTER the page mounts.
-// useFetch/useAsyncData always triggers Suspense in Nuxt 3 — if the backend
-// is unreachable the Suspense error boundary catches it and kills the entire
-// page mount, leaving Vue Router without event handlers (buttons unresponsive).
-const categories = ref<string[]>([])
-const pending = ref(true)
+// useAsyncData fetches on the server so categories are in the HTML Google crawls.
+// The default () => ({ categories: [] }) ensures the page renders gracefully even
+// when the Railway backend is unreachable during SSR — no Suspense crash.
+const { data: navData, pending } = await useAsyncData(
+  'site-nav',
+  () => $fetch<{ categories: string[] }>(`${apiBaseUrl}/api/public/site/nav`).catch(() => ({ categories: [] })),
+  { default: () => ({ categories: [] as string[] }) }
+)
 
-onMounted(async () => {
-  try {
-    const data = await $fetch<{ categories: string[] }>(`${apiBaseUrl}/api/public/site/nav`)
-    categories.value = data?.categories ?? []
-  } catch {
-    // Backend unavailable — silently show empty categories, page still works
-    categories.value = []
-  } finally {
-    pending.value = false
-  }
-})
+const categories = computed(() => navData.value?.categories ?? [])
 </script>
