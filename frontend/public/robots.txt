@@ -4,4 +4,5 @@ Allow: /
 # Block admin pages from indexing
 Disallow: /admin/
 
-Sitemap: https://www.magerpack.com/sitemap.xml
+# Replace SITE_URL with your actual domain once purchased (e.g. https://www.magerpack.com)
+# Sitemap: https://www.magerpack.com/sitemap.xml

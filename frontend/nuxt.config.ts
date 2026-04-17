@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap'
   ],
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.magerpack.com',
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     name: 'MagerPack Manufacturing'
   },
   sitemap: {
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8081',
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.magerpack.com'
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     }
   }
 })
