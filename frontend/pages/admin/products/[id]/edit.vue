@@ -213,7 +213,7 @@
 
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin-auth', layout: 'admin' })
-useSeoMeta({ title: 'Edit Product | Admin' })
+useSeo({ title: 'Edit Product | Admin', description: 'Admin edit product page.', noindex: true })
 
 const route = useRoute()
 const productId = route.params.id as string

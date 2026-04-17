@@ -317,13 +317,11 @@ const relatedProducts = computed(() => {
 // Update SEO when product loads
 watch(product, (newProduct) => {
   if (newProduct) {
-    useSeoMeta({
+    useSeo({
       title: `${newProduct.name} | Custom Packaging | MagerPack`,
-      ogTitle: `${newProduct.name} | Custom Packaging | MagerPack`,
       description: newProduct.shortDescription || newProduct.description || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`,
-      ogDescription: newProduct.shortDescription || newProduct.description || `Professional ${newProduct.name} manufacturing services. Get factory-direct pricing and rapid sampling support.`,
       ogImage: newProduct.imageUrl || '/images/default-product-og.jpg',
-      twitterCard: 'summary_large_image'
+      path: `/products/${slug}`
     })
   }
 }, { immediate: true })

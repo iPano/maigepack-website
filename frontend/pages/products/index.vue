@@ -271,13 +271,11 @@
 
 <script setup lang="ts">
 // SEO Meta Tags
-useSeoMeta({
+useSeo({
   title: 'Custom Packaging Products | MagerPack Manufacturing',
-  ogTitle: 'Custom Packaging Products | MagerPack Manufacturing',
   description: 'Browse our comprehensive range of custom packaging solutions including rigid boxes, folding boxes, display packaging, and more. Factory-direct pricing with rapid prototyping.',
-  ogDescription: 'Browse our comprehensive range of custom packaging solutions including rigid boxes, folding boxes, display packaging, and more. Factory-direct pricing with rapid prototyping.',
   ogImage: '/images/products-og.jpg',
-  twitterCard: 'summary_large_image'
+  path: '/products'
 })
 
 const route = useRoute()
