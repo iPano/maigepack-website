@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  ssr: false, // Temporarily disable SSR to avoid Nitro build issues on Vercel
+  ssr: true,
   components: [
     // ui/ components registered WITHOUT prefix: <Button>, <Card>, <Badge>, <Input>
     { path: '~/components/ui', pathPrefix: false },
@@ -18,12 +18,28 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/sitemap'
   ],
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://magerpack-website.vercel.app',
+    name: 'MagerPack Manufacturing'
+  },
+  sitemap: {
+    strictNuxtContentPaths: false,
+    urls: [
+      '/',
+      '/products',
+      '/industries',
+      '/contact-us',
+      '/artwork-guideline'
+    ]
+  },
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8081'
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8081',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://magerpack-website.vercel.app'
     }
   }
 })

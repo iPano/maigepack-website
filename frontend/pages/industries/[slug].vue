@@ -324,14 +324,11 @@ const { data: recommendedProducts, pending: productsLoading } = await useFetch((
 // Update SEO when industry loads
 watch(industry, (newIndustry) => {
   if (newIndustry) {
-    useSeoMeta({
+    useSeo({
       title: `${newIndustry.metaTitle || `${newIndustry.name} Packaging Solutions`} | MagerPack`,
-      ogTitle: `${newIndustry.metaTitle || `${newIndustry.name} Packaging Solutions`} | MagerPack`,
       description: newIndustry.metaDescription || newIndustry.shortDescription || `Specialized packaging solutions for ${newIndustry.name.toLowerCase()}. Get expert guidance and custom solutions designed for your industry.`,
-      ogDescription: newIndustry.metaDescription || newIndustry.shortDescription || `Specialized packaging solutions for ${newIndustry.name.toLowerCase()}. Get expert guidance and custom solutions designed for your industry.`,
       ogImage: newIndustry.heroImageUrl || '/images/industry-og.jpg',
-      twitterCard: 'summary_large_image',
-      keywords: newIndustry.seoKeywords ? newIndustry.seoKeywords.join(', ') : `${newIndustry.name}, packaging, custom packaging, manufacturing`
+      path: `/industries/${slug}`
     })
   }
 }, { immediate: true })

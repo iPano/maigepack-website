@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: 'admin' })
-useSeoMeta({ title: 'Admin Login | MaigePack' })
+useSeo({ title: 'Admin Login | MaigePack', description: 'Admin login page.', noindex: true })
 
 const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string

@@ -203,7 +203,7 @@
 
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin-auth', layout: 'admin' })
-useSeoMeta({ title: 'Add Product | Admin' })
+useSeo({ title: 'Add Product | Admin', description: 'Admin add product page.', noindex: true })
 
 const { apiFetch } = useAdminApi()
 const config = useRuntimeConfig()

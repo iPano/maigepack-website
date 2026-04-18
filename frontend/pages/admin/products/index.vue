@@ -139,7 +139,7 @@
 
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin-auth', layout: 'admin' })
-useSeoMeta({ title: 'Products | Admin' })
+useSeo({ title: 'Products | Admin', description: 'Admin products list.', noindex: true })
 
 interface ProductSummary {
   id: number

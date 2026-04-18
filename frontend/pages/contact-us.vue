@@ -279,13 +279,11 @@
 import { reactive, ref } from 'vue'
 
 // SEO Meta Tags
-useSeoMeta({
+useSeo({
   title: 'Get Free Quote - Custom Packaging | MagerPack',
-  ogTitle: 'Get Free Quote - Custom Packaging | MagerPack',
   description: 'Get a free quote for custom packaging solutions. Expert team responds within 24 hours with detailed pricing and recommendations.',
-  ogDescription: 'Get a free quote for custom packaging solutions. Expert team responds within 24 hours with detailed pricing and recommendations.',
   ogImage: '/images/contact-og.jpg',
-  twitterCard: 'summary_large_image'
+  path: '/contact-us'
 })
 
 const config = useRuntimeConfig()
