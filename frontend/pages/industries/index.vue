@@ -276,7 +276,7 @@ const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
 // Fetch all active industries
-const { data: industries, pending, error } = await useFetch(`${apiBaseUrl}/api/public/industries`)
+const { data: industries, pending, error } = await useFetch(`${apiBaseUrl}/api/public/industries`, { server: false })
 
 // Error handling
 if (error.value) {

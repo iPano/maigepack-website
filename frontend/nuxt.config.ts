@@ -27,6 +27,8 @@ export default defineNuxtConfig({
   },
   sitemap: {
     strictNuxtContentPaths: false,
+    discoverImages: false,
+    autoLastmod: false,
     urls: [
       '/',
       '/products',
@@ -34,6 +36,11 @@ export default defineNuxtConfig({
       '/contact-us',
       '/artwork-guideline'
     ]
+  },
+  // Disable nuxt-site-config's git-based URL detection to prevent SSR from
+  // making outbound requests to GitHub
+  'nuxt-site-config': {
+    debug: false
   },
   css: ['~/assets/css/main.css'],
   runtimeConfig: {

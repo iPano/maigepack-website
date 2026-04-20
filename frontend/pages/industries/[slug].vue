@@ -312,14 +312,13 @@ useSeoMeta({
 })
 
 // Fetch industry data
-const { data: industry, pending, error } = await useFetch(`${apiBaseUrl}/api/public/industries/${slug}`)
+const { data: industry, pending, error } = await useFetch(`${apiBaseUrl}/api/public/industries/${slug}`, { server: false })
 
 // Fetch recommended products for this industry
 const { data: recommendedProducts, pending: productsLoading } = await useFetch(() => {
   if (!industry.value?.name) return null
-  // Use industry name to find products (you could also use industry slug)
   return `${apiBaseUrl}/api/public/products/industry/${industry.value.name}`
-})
+}, { server: false })
 
 // Update SEO when industry loads
 watch(industry, (newIndustry) => {

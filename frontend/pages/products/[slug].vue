@@ -298,13 +298,13 @@ const config = useRuntimeConfig()
 const apiBaseUrl = config.public.apiBaseUrl as string
 
 // Fetch product data
-const { data: product, pending, error } = await useFetch(`${apiBaseUrl}/api/public/products/${slug}`)
+const { data: product, pending, error } = await useFetch(`${apiBaseUrl}/api/public/products/${slug}`, { server: false })
 
 // Fetch related products (same category)
 const { data: relatedProductsData } = await useFetch(() => {
   if (!product.value?.category) return null
   return `${apiBaseUrl}/api/public/products/category/${product.value.category}`
-})
+}, { server: false })
 
 const relatedProducts = computed(() => {
   if (!relatedProductsData.value) return []
